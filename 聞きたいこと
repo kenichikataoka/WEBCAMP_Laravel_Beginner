@@ -1,0 +1,16 @@
+・chapter2…オートローディング機能のイメージがわかない。
+・::class…そのクラスの完全修飾名を取得する、という意味がわからない。どういうときに使用するの？
+・@extends('test.layout')…同じ階層にいても、test.layout、とかにしないといけないのか？
+・同じ階層にいても、フルパスっぽく設定するのか？
+・bladeって階層関係ないのか。
+・validationのエラーは$errorsで受け取るという考えで問題ないか？ていうか$errorsってどこからやってきたの？
+・chapter6のミドルウェアで認可を許可するあたりから最後までわからない
+・$request->session()->flash('front.task_register_success', true);これ意味わからない
+・独自の定数(変数)や関数は、モデルに書くの？
+・chapter8
+    public function getPriorityString() {
+        return $this::PRIORITY_VALUE[$this->priority]??'';
+    }
+　これ意味わからない
+
+　・phpmyadminなどDBには基本的に暗号化したものを入れるべきか
