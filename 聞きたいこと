@@ -27,6 +27,7 @@
 
 ・phpmyadminなどDBには基本的に暗号化したものを入れるべきか
 ・セキュリティ
+・Bootstrap
 
 ・<button onclick='return confirm("このタスクを削除します(削除したら戻せません)。
 　よろしいですか？");'> の onclick='return confirm("このタスクを削除します
