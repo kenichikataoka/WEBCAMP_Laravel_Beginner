@@ -13,7 +13,7 @@ class TestController extends Controller
     public function index() {
         return view('test.index');
     }
-
+    
     // バリデーションは$requestのvalidationメソッドを使う
     // バリデーションの一般書式
     // $validate後のデータを受け取る変数 = $request->validate([

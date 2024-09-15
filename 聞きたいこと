@@ -1,16 +1,28 @@
-・chapter2…オートローディング機能のイメージがわかない。
-・::class…そのクラスの完全修飾名を取得する、という意味がわからない。どういうときに使用するの？
-・@extends('test.layout')…同じ階層にいても、test.layout、とかにしないといけないのか？
-・同じ階層にいても、フルパスっぽく設定するのか？
-・bladeって階層関係ないのか。
-・validationのエラーは$errorsで受け取るという考えで問題ないか？ていうか$errorsってどこからやってきたの？
-・chapter6のミドルウェアで認可を許可するあたりから最後までわからない
-・$request->session()->flash('front.task_register_success', true);これ意味わからない
-・独自の定数(変数)や関数は、モデルに書くの？
-・chapter8
-    public function getPriorityString() {
-        return $this::PRIORITY_VALUE[$this->priority]??'';
-    }
-　これ意味わからない
+・「WAFのmiddleware」とは、「（複数の）処理の前または
+　後に共通で行いたい処理を書く」場所と方法  とされています。
+・IT業界でインフラとはネットワークとサーバをさす。
+・ロードバランサは「一度、ユーザの全requestを受け取って」
+　「一定のルールに従って、"沢山あるサーバのどれか1台"に
+　処理を依頼する」機能を持ちます。
+・オートローディングの機能(自動的にrequire_onceが呼ばれる機能)
+　を使用するには、ディレクトリ名と名前空間名が一致している必要がある。
+・useする場合、名前空間名の最後と使用するクラス名が一致している必要がある。
+・テンプレートファイルが「resources/viewsディレクトリの中のディレクトリ AAA 内のファイル
+　BBB.php」の場合、通常は AAA/BBB と書くことが多いのですが、Laravelのテンプレート
+　をview()関数に渡す場合は「AAA.BBB」と記述します。
+・バリデーションのやり方は主に2種類。$request->validateの方法と、フォームリクエスト
+　使ったバリデーションの方法。
+・フォームリクエストを使用する場合は、
+  public function input(Request～)をpublic function input(TestPostRequest～)にする
 
-　・phpmyadminなどDBには基本的に暗号化したものを入れるべきか
+・todolistというPROJECTは、認証にAuthControllerを使用していて、
+　通常画面にTaskControllerを使用している
+
+・$table->string('email')->nullable()のメソッドチェーンでつながれている部分は
+　カラム修飾子。
+・Auth::attempt([ログインに必要なデータのhash配列]);で認証がOKかどうかを確認する
+
+・NULL合体演算子について$_GET['user'] を取得します。もし存在しない場合は'nobody' を用います。
+　→$username = $_GET['user'] ?? 'nobody';
+
+・phpmyadminなどDBには基本的に暗号化したものを入れるべきか
