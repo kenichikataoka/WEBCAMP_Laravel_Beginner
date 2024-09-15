@@ -18,6 +18,6 @@ class Task extends Model
     ];
 
     public function getPriorityString() {
-        return $this::PRIORITY_VALUE[$this->priority]??'';
+        return $this::PRIORITY_VALUE[$this->priority] ?? '';
     }
 }

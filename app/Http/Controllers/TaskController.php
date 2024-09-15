@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TaskRegisterPostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Task as TaskModel;
+use Illuminate\Support\Facades\DB;
+use App\Models\CompletedTask as CompletedTaskModel;
 
 class TaskController extends Controller
 {
@@ -153,5 +155,48 @@ class TaskController extends Controller
 
         // テンプレートに「取得したレコード」の情報を渡す
         return view($template_name, ['task' => $task]);
+    }
+
+    public function delete(Request $request, $task_id){
+        $task=$this->getTaskModel($task_id);
+        // タスクを削除する
+        if ($task !== null) {
+            $task->delete();
+            $request->session()->flash('front.task_delete_success', true);
+        }
+
+        // 一覧に遷移する
+        return redirect('/task/list');
+    }
+
+    public function complete(Request $request,$task_id){
+        try {
+            //トランザクション開始
+            DB::beginTransaction();
+            // task_idのレコードを取得する
+            $task = $this->getTaskModel($task_id);
+            if($task===null){
+                // task_idが不正なのでトランザクション終了
+                throw new \Exception('');
+            }
+            $task->delete();
+            $dask_datum=$task->toArray();
+            // 配列から特定のkey（とその値）を削除する時はunset()メソッド を使う。
+            unset($dask_datum['created_at']);
+            unset($dask_datum['updated_at']);
+            $r = CompletedTaskModel::create($dask_datum);
+            if($r===null){
+                throw new \Exception('');
+            }
+            // トランザクション終了
+            DB::commit();
+            $request->session()->flash('front.task_completed_success',true);
+        } catch(\Throwable $e) {
+            // トランザクション異常終了
+            DB::rollBack();
+            $request->session()->flash('front.task_completed_failure', true);
+        }
+        // 一覧に遷移
+        return redirect('/task/list');
     }
 }

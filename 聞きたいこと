@@ -26,3 +26,10 @@
 　→$username = $_GET['user'] ?? 'nobody';
 
 ・phpmyadminなどDBには基本的に暗号化したものを入れるべきか
+・セキュリティ
+
+・<button onclick='return confirm("このタスクを削除します(削除したら戻せません)。
+　よろしいですか？");'> の onclick='return confirm("このタスクを削除します
+　(削除したら戻せません)。よろしいですか？");' の部分は、JavaScript のコード
+
+・toArray()メソッドは、Modelインスタンスのデータを連想配列として取り出せるメソッド

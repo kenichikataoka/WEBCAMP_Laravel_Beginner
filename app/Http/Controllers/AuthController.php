@@ -31,7 +31,7 @@ class AuthController extends Controller
         return redirect()->intended('/task/list');
     }
 
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
         $request->session()->regenerateToken();
         $request->session()->regenerate();
